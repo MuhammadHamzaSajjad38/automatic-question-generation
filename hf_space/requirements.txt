@@ -1,5 +1,0 @@
-streamlit
-torch
-transformers
-spacy
-huggingface_hub
