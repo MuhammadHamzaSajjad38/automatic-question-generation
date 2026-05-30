@@ -148,7 +148,6 @@ Open `NLP_Project_FineTuning_Evaluation.ipynb` in Google Colab:
 ## 👥 Authors
 
 - **M. Hamza Sajjad** — [Hamzasajjad38](https://huggingface.co/Hamzasajjad38)
-- **Shanza Gul**
 
 📌 Supervised by **Dr. Adnan Abid** · MPhil Data Science
 
