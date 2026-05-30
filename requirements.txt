@@ -1,0 +1,12 @@
+torch
+transformers
+sentencepiece
+spacy
+nltk
+gradio
+flask
+fpdf2
+datasets
+accelerate
+huggingface_hub
+flask-cors

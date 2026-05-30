@@ -1,0 +1,41 @@
+# ── Python ───────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environments ─────────────────────────
+venv/
+env/
+.env
+.venv
+ENV/
+
+# ── Model weights (too large for GitHub) ─────────
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# ── Temporary / generated files ───────────────────
+*.pdf
+questions_*.pdf
+pdf_content.txt
+
+# ── Jupyter checkpoints ───────────────────────────
+.ipynb_checkpoints/
+
+# ── VS Code ───────────────────────────────────────
+.vscode/
+
+# ── OS files ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── spaCy downloaded models ───────────────────────
+en_core_web_sm/
