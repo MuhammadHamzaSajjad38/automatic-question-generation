@@ -10,3 +10,4 @@ datasets
 accelerate
 huggingface_hub
 flask-cors
+PyPDF2

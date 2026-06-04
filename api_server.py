@@ -16,6 +16,7 @@ Usage:
 import os
 import json
 import tempfile
+import PyPDF2
 
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
@@ -141,6 +142,32 @@ def export_pdf():
         )
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
+
+
+@app.route("/extract_pdf", methods=["POST"])
+def extract_pdf():
+    """
+    Extract text from an uploaded PDF file.
+    """
+    if 'file' not in request.files:
+        return jsonify({"error": "No file uploaded."}), 400
+        
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No file selected."}), 400
+        
+    if not file.filename.lower().endswith('.pdf'):
+        return jsonify({"error": "Only PDF files are supported."}), 400
+        
+    try:
+        reader = PyPDF2.PdfReader(file)
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text() + "\n\n"
+            
+        return jsonify({"text": text.strip(), "status": "Text extracted successfully!"})
+    except Exception as exc:
+        return jsonify({"error": f"Failed to read PDF: {str(exc)}"}), 500
 
 
 # ══════════════════════════════════════════════════════════════════

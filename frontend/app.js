@@ -24,6 +24,8 @@ const toggleAnswers    = document.getElementById('toggle-answers');
 const btnGenerate      = document.getElementById('btn-generate');
 const generateLabel    = document.getElementById('generate-label');
 const btnSample        = document.getElementById('btn-sample');
+const btnUploadPdf     = document.getElementById('btn-upload-pdf');
+const pdfUploadInput   = document.getElementById('pdf-upload-input');
 const btnCopy          = document.getElementById('btn-copy');
 const btnPdf           = document.getElementById('btn-pdf');
 
@@ -69,6 +71,52 @@ btnSample.addEventListener('click', () => {
   inputText.value = SAMPLE_TEXT;
   updateCounter();
   inputText.focus();
+});
+
+// ── PDF Upload ──────────────────────────────────────────────────────
+btnUploadPdf.addEventListener('click', () => {
+  pdfUploadInput.click();
+});
+
+pdfUploadInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (file.type !== 'application/pdf') {
+    showToast('⚠️ Please select a valid PDF file.', 'error');
+    return;
+  }
+
+  // Show loading state on button
+  const originalHtml = btnUploadPdf.innerHTML;
+  btnUploadPdf.innerHTML = '<span class="dot-animation">...</span> Extracting';
+  btnUploadPdf.disabled = true;
+
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch(`${API_BASE}/extract_pdf`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.error || 'Failed to extract text from PDF');
+    }
+
+    const data = await response.json();
+    inputText.value = data.text;
+    updateCounter();
+    showToast('📄 Text extracted successfully!', 'success');
+  } catch (err) {
+    showToast(`⚠️ Error: ${err.message}`, 'error');
+  } finally {
+    btnUploadPdf.innerHTML = originalHtml;
+    btnUploadPdf.disabled = false;
+    pdfUploadInput.value = ''; // Reset input so same file can be uploaded again
+  }
 });
 
 // ── Toast helper ────────────────────────────────────────────────────

@@ -53,27 +53,19 @@
       <p class="hero-sub">
         Powered by a T5 Transformer fine-tuned on <strong>SQuAD 1.1</strong> — paste any passage to generate intelligent questions, MCQs, and exportable question papers in seconds.
       </p>
-      <!-- Model metrics chips -->
-      <div class="metrics-row">
-        <div class="metric-chip">
-          <span class="metric-label">ROUGE-1</span>
-          <span class="metric-val">0.4509</span>
+      <!-- Feature chips -->
+      <div class="metrics-row" style="gap: 15px;">
+        <div class="metric-chip" style="min-width: auto; padding: 8px 16px;">
+          <span class="metric-label" style="font-size: 0.8rem; color: var(--c-text);">📝 Paste or Upload PDF</span>
         </div>
-        <div class="metric-chip">
-          <span class="metric-label">ROUGE-2</span>
-          <span class="metric-val">0.2445</span>
+        <div class="metric-chip" style="min-width: auto; padding: 8px 16px;">
+          <span class="metric-label" style="font-size: 0.8rem; color: var(--c-text);">🔍 Auto-Extract Concepts</span>
         </div>
-        <div class="metric-chip">
-          <span class="metric-label">ROUGE-L</span>
-          <span class="metric-val">0.4167</span>
+        <div class="metric-chip" style="min-width: auto; padding: 8px 16px;">
+          <span class="metric-label" style="font-size: 0.8rem; color: var(--c-text);">🎯 Exam-Ready Questions</span>
         </div>
-        <div class="metric-chip">
-          <span class="metric-label">BLEU</span>
-          <span class="metric-val">0.1581</span>
-        </div>
-        <div class="metric-chip">
-          <span class="metric-label">Train Samples</span>
-          <span class="metric-val">20,000</span>
+        <div class="metric-chip" style="min-width: auto; padding: 8px 16px;">
+          <span class="metric-label" style="font-size: 0.8rem; color: var(--c-text);">📄 Export to PDF</span>
         </div>
       </div>
     </div>
@@ -89,7 +81,14 @@
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           Text Input
         </h2>
-        <button class="btn-ghost btn-sm" id="btn-sample" title="Load a sample passage">Try sample</button>
+        <div style="display: flex; gap: 8px;">
+          <input type="file" id="pdf-upload-input" accept="application/pdf" style="display: none;" />
+          <button class="btn-ghost btn-sm" id="btn-upload-pdf" title="Upload a PDF document" style="color: var(--c-primary); border-color: rgba(124,106,247,.3);">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; margin-right: 4px; vertical-align: text-bottom;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload PDF
+          </button>
+          <button class="btn-ghost btn-sm" id="btn-sample" title="Load a sample passage">Try sample</button>
+        </div>
       </div>
 
       <textarea
@@ -190,11 +189,7 @@
 
   <!-- ── Stats Section ───────────────────────────────────────────────── -->
   <section class="stats-section container">
-    <div class="stat-card">
-      <div class="stat-icon">🎯</div>
-      <div class="stat-number">20K</div>
-      <div class="stat-label">Training Samples</div>
-    </div>
+  
     <div class="stat-card">
       <div class="stat-icon">🧠</div>
       <div class="stat-number">60M</div>
